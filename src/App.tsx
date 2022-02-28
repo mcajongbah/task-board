@@ -1,10 +1,16 @@
-function App() {
+import { AddItemButton } from "./components/AddNewItem";
+import { Column } from "./components/Column";
 
+function App() {
   return (
-    <div className="w-full h-screen bg-purple-400 flex items-center justify-center">
-      <h1 className="text-4xl font-semibold text-white">Welcome to the boiler-plate</h1>
+    <div className="w-full h-screen bg-[#3179ba] items-start flex p-5">
+      <Column text="ToDo: " />
+      <AddItemButton
+        onAdd={console.log}
+        toggleButtonText="+ Add another list"
+      />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

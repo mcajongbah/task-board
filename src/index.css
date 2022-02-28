@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .task-column {
+    @apply w-[300px] min-h-[40px] mr-5 rounded p-2 flex-grow-0 bg-[#ebecf0];
+  }
+
+  .column-title {
+    @apply pt-2 px-4 text-lg pb-3 font-bold;
+  }
+
+  .card {
+    @apply bg-white cursor-pointer mb-2 py-[0.5rem] px-[1rem] rounded max-w-[300px] shadow-[#091e4240_0px_1px_0px_0px];
+  }
+
+  .add-item {
+    @apply bg-[#ffffff3d] rounded cursor-pointer max-w-[300px] px-3 py-2 text-left hover:bg-[#ffffff52] w-full transition-all ease-in duration-100;
+  }
+}
