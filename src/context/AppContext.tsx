@@ -1,72 +1,64 @@
-import { createContext } from "react";
-import { v4 as uuidv4 } from "uuid";
-
-type Task = {
-  id: string;
-  text: string;
-};
-
-type List = {
-    id: string;
-    text: string;
-    tasks: Task[];
-}
-
-export type AppState = {
-    lists: List[];
-}
+import { createContext, Dispatch } from "react";
+import { nanoid } from "nanoid";
+import { AppState, List, Task, appReducer } from "./appReducer";
+import { Action } from "./actions";
 
 const initialState: AppState = {
-    lists: [
+  lists: [
+    {
+      id: nanoid(),
+      text: "To Do",
+      tasks: [
         {
-            id: uuidv4(),
-            text: "To Do",
-            tasks: [
-                {
-                    id: uuidv4(),
-                    text: "Generate app scaffold",
-                },
-                {
-                    id: uuidv4(),
-                    text: "Learn TypeScript",
-                },
-                {
-                    id: uuidv4(),
-                    text: "Begin to use static typing",
-                },
-            ],
+          id: nanoid(),
+          text: "Generate app scaffold",
         },
         {
-            id: uuidv4(),
-            text: "In Progress",
-            tasks: [
-                {
-                    id: uuidv4(),
-                    text: "Generate app scaffold",
-                },
-                {
-                    id: uuidv4(),
-                    text: "Begin to use static typing",
-                },
-            ],
+          id: nanoid(),
+          text: "Learn TypeScript",
         },
+        {
+          id: nanoid(),
+          text: "Begin to use static typing",
+        },
+      ],
+    },
+    {
+      id: nanoid(),
+      text: "In Progress",
+      tasks: [
+        {
+          id: nanoid(),
+          text: "Generate app scaffold",
+        },
+        {
+          id: nanoid(),
+          text: "Begin to use static typing",
+        },
+      ],
+    },
 
+    {
+      id: nanoid(),
+      text: "Done",
+      tasks: [
         {
-            id: uuidv4(),
-            text: "Done",
-            tasks: [
-                {
-                    id: uuidv4(),
-                    text: "Begin to use static typing",
-                },
-            ],
+          id: nanoid(),
+          text: "Begin to use static typing",
         },
-    ],
-}
+        {
+          id: nanoid(),
+          text: "Figure react context",
+        },
+      ],
+    },
+  ],
+};
 
 type AppStateContextProps = {
     lists: List[];
     getTasksById(id: string): Task[]
+    dispatch: Dispatch<Action>
 }
 
 export const AppStateContext = createContext<AppStateContextProps>({} as AppStateContextProps);

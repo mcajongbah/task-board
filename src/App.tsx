@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { AddItemButton } from "./components/AddNewItem";
 import { Column } from "./components/Column";
-import { AppStateContext } from "./context/AppContext";
+import { AppStateContext } from "./context/appContext";
 
 function App() {
 
