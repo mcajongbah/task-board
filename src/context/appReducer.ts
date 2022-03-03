@@ -1,6 +1,5 @@
 import { nanoid } from "nanoid";
 import { Action } from "./actions";
-import { initialState } from "./appContext";
 
 export type Task = {
   id: string;
@@ -20,7 +19,7 @@ export type AppState = {
 export const appReducer = (
   state: AppState,
   action: Action
-): typeof initialState | void => {
+): AppState => {
   switch (action.type) {
     case "ADD_LIST":
       return {
