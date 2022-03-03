@@ -1,9 +1,9 @@
-import { createContext, Dispatch } from "react";
+import { createContext, Dispatch, useReducer } from "react";
 import { nanoid } from "nanoid";
 import { AppState, List, Task, appReducer } from "./appReducer";
 import { Action } from "./actions";
 
-const initialState: AppState = {
+export const initialState: AppState = {
   lists: [
     {
       id: nanoid(),
@@ -61,17 +61,25 @@ type AppStateContextProps = {
     dispatch: Dispatch<Action>
 }
 
-export const AppStateContext = createContext<AppStateContextProps>({} as AppStateContextProps);
+export const AppStateContext = createContext<AppStateContextProps>({
+    lists: initialState.lists,
+    getTasksById: () => [],
+    dispatch: () => {},
+});
 
 export const AppStateProvider: React.FC = ({ children }) => {
-    const { lists } = initialState;
+  const [state, dispatch] = useReducer(appReducer, initialState);
+
+    const { lists } = state;
 
     const getTasksById = (id: string) => {
-        return lists.filter(list => list.id === id)[0]?.tasks || [];
+        return lists.filter((list: { id: string; }) => list.id === id)[0]?.tasks || [];
     }
 
+    const value = {lists, getTasksById, dispatch};
+
     return (
-        <AppStateContext.Provider value={{ lists, getTasksById }}>
+        <AppStateContext.Provider value={value as AppStateContextProps}>
             {children}
         </AppStateContext.Provider>
     );

@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { addTask } from "../context/actions";
 import { AppStateContext } from "../context/appContext";
 import { AddItemButton } from "./AddNewItem";
 import { Card } from "./Card";
@@ -9,7 +10,7 @@ type ColumnProps = {
 };
 
 export const Column: React.FC<ColumnProps> = ({ text, id }) => {
-  const { getTasksById } = useContext(AppStateContext);
+  const { getTasksById, dispatch } = useContext(AppStateContext);
 
   const tasks = getTasksById(id);
 
@@ -20,7 +21,7 @@ export const Column: React.FC<ColumnProps> = ({ text, id }) => {
         <Card key={task.id} text={task.text} id={task.id} />
       ))}
       <AddItemButton
-        onAdd={console.log}
+        onAdd={text => dispatch(addTask(id, text))}
         toggleButtonText="+ Add another card"
       />
     </div>
