@@ -11,7 +11,7 @@ export const initialState: AppState = {
       tasks: [
         {
           id: nanoid(),
-          text: "Generate app scaffold",
+          text: "Validate Input",
         },
         {
           id: nanoid(),
@@ -19,7 +19,11 @@ export const initialState: AppState = {
         },
         {
           id: nanoid(),
-          text: "Begin to use static typing",
+          text: "Define Min and Max width of cards and scroll horizontally", 
+        },
+        {
+          id: nanoid(),
+          text: "Style Scrollbar", 
         },
       ],
     },
